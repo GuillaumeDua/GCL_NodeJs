@@ -20,6 +20,7 @@ function			CB_OnProcessSTDINReadable(CmdManagerInstance)
 var CmdLineManager = function()
 {
 	this._cmds 					= {};
+	this._help					= {};
 	
 	this.ManageCmd				= function(chunk)
 	{
@@ -45,6 +46,10 @@ var CmdLineManager = function()
 	{
 		this._cmds[key] = value;
 	}
+	this.InsertHelp				= function(key, value)
+	{
+		this._help[key] = value;
+	}
 	this.Remove					= function(key)
 	{
 		// [Todo] : splice ?
@@ -53,6 +58,12 @@ var CmdLineManager = function()
 	{
 		if (key in this._cmds)
 			return this._cmds[key];
+		return null;
+	}
+	this.GetHelp				= function(key)
+	{
+		if (key in this._help)
+			return this._help[key];
 		return null;
 	}
 	this.StartRecordingInputs	= function()
