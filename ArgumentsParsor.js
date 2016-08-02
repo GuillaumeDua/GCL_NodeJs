@@ -1,9 +1,10 @@
 var colors 			= require('colors');
+var Logger			= require('./Logger.js').Logger;
 
 function Dump()
 {
 	process.argv.forEach(function (val, index, array) {
-	  Logger.writeFor("Arguments", '[' + index + '] => [' + val.green + ']');
+	  Logger.writeFor("ArgumentsParsor", '[' + index + '] => [' + val.green + ']');
 	});
 }
 
@@ -36,11 +37,11 @@ var		ArgumentsLoader = function()
 	}
 	this.Dump			= function()
 	{
-		console.log("ArgumentsLoader::Dump");
+		Logger.writeFor('ArgumentsLoader::Dump', 'Dumping loaded arguments');
 		for (var element in this.args)
-			console.log(element + " => " + this.args[element]);
+		    Logger.write(" |- " + element + " => " + this.args[element]);
 	}
 };
 
-exports.Dump 			= Dump;
+exports.Dump 		= Dump;
 exports.ArgumentsLoader	= new ArgumentsLoader();
